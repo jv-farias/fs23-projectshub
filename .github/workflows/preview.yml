@@ -1,0 +1,49 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: ci-${{ github.ref }}
+
+jobs:
+  info: 
+    uses: ./.github/workflows/call-info.yml
+
+  preview:
+    needs: info
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout to repository
+      - name: Checkout to repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: latest
+
+      - name: Build Vite Project
+        working-directory: .
+        run: |
+          npm ci
+          npm run build
+          npm run build-storybook          
+        shell: bash
+
+      - name: Deploy Chromatic
+        uses: chromaui/action@v1        
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          # 👇Runs Chromatic with the option to compress the build output.
+          zip: true

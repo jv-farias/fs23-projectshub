@@ -1,0 +1,37 @@
+name: Info
+
+on: 
+  workflow_call:
+    outputs:
+      baseUrl:
+        description: "Determine the Base URL"
+        value: ${{ jobs.info.outputs.output1 }}
+
+jobs: 
+  info:
+    name: Determine the Base URL
+    runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.base-url.outputs.result }}
+    steps:
+      - id: base-url
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const githubEventName = "${{ github.event_name }}";
+            const githubRepositoryName = "${{ github.event.repository.name }}"; // repo
+            const repositoryBaseUrl =  `/${githubRepositoryName}`; // /<repo>
+            
+            if (githubEventName === "push") {
+              const githubBranchName = "${{ github.ref_name }}"; // branch
+              // base URL of the production site
+              if (githubBranchName === "main") {
+                const baseUrl = repositoryBaseUrl;
+                return baseUrl; // /<repo>
+              }
+            } else if (githubEventName === "pull_request") {
+              const prNumber = "${{ github.event.number }}"; // pr-number
+              const baseUrl = `${repositoryBaseUrl}/pr-preview/pr-${prNumber}`;
+              return baseUrl; // /<repo>/pr-preview/pr-<pr-number>
+            }
+          result-encoding: string
