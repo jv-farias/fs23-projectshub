@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: latest
 
-      - name: Build Vite Project
+      - name: Build Next Project
         working-directory: .
         run: |
           npm ci
