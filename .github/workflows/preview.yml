@@ -37,8 +37,14 @@ jobs:
         working-directory: .
         run: |
           npm ci
+          npx prisma generate
           npm run build
-          npm run build-storybook          
+          npm run build-storybook     
+          env:
+            DATABASE_URL: ${{ secrets.DATABASE_URL }} 
+            NEXT_AUTH_SECRET= ${{ secrets.NEXT_AUTH_SECRET }}
+            GITHUB_ID= ${{ secrets.GITHUB_ID }}
+            GITHUB_SECRET= ${{ secrets.GITHUB_SECRET }}
         shell: bash
 
       - name: Deploy Chromatic
