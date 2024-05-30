@@ -1,0 +1,10 @@
+import React from 'react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom'
+import { {{pascalCase name}} } from './{{pascalCase name}}';
+
+test('renders {{pascalCase name}}', () => {
+  const { getByText } = render(<{{pascalCase name}} />);
+  const element = getByText(/{{pascalCase name}}/i);
+  expect(element).toBeInTheDocument();
+});
