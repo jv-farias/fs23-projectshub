@@ -37,6 +37,7 @@ jobs:
         working-directory: .
         run: |
           npm ci
+          npx prisma generate
           npm run build
           npm run build-storybook          
         shell: bash
