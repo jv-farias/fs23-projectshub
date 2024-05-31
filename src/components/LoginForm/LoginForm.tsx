@@ -145,7 +145,7 @@ export const LoginForm = () => {
       </Button>
       <p className="text-gray-300 font-semibold text-sm mt-4">
         Se você não tem uma conta, você pode se registrar{" "}
-        <Link href="/sign_up" className="text-blue-500">
+        <Link href="/register" className="text-blue-500">
           aqui
         </Link>
       </p>
