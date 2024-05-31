@@ -7,10 +7,15 @@ import { Inter } from "next/font/google";
 import { useEffect } from "react";
 import "./globals.css";
 import AuthProvider from "../../providers/auth";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   useEffect(() => {
     AOS.init({
       once: true,
@@ -19,13 +24,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       easing: "ease-out-cubic",
     });
   });
+  const pathname = usePathname();
+
 
   return (
     <html lang="pt-br">
       <body className={`${inter.className} dark`}>
         <AuthProvider>
+        {pathname !== '/login' && pathname !== '/register' && <Header />}
           <div className="flex-1">{children}</div>
           <Toaster />
+          {pathname !== '/login' && pathname !== '/register' && <Footer />}
         </AuthProvider>
       </body>
     </html>
