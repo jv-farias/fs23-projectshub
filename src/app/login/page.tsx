@@ -1,8 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import { LoginForm } from "@/components/LoginForm";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const SignInPage = () => {
+const LoginPage = () => {
   return (
     <section className="max-lg:p-0 p-6 flex w-scren flex-1 h-screen bg-[#212227] ">
       <div className="max-lg:hidden justify-between bg-[#212227]Í flex flex-col  items-start w-2/5">
@@ -29,8 +30,12 @@ const SignInPage = () => {
           </div>
         </div>
       </div>
-      <div className="bg-[#17191C] flex items-center justify-center px-3 w-full rounded-2xl "></div>
+      <div className="bg-[#17191C] flex items-center justify-center px-3 w-full rounded-2xl ">
+        <div className="w-[90%] md:w-[60%] lg:w-[40%] ">
+          <LoginForm />
+        </div>
+      </div>
     </section>
   );
 };
-export default SignInPage;
+export default LoginPage;
