@@ -23,8 +23,8 @@ export const Header = () => {
   };
   
   return (
-    <header className="py-2 max-lg:w-full w-[90%] mx-auto top-0 z-[100] bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-screen-2xl items-center">
+    <header className="py-2 max-lg:w-full w-full mx-auto top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-14 w-[90%] max-w-screen-2xl items-center">
         <MainNav />
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
