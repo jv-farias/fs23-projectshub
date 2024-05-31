@@ -20,10 +20,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 export const RegisterForm = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [loadingGithub, setLoadingGithub] = useState(false);
 
   const formSchema = z
     .object({
@@ -72,14 +74,14 @@ export const RegisterForm = () => {
   };
 
   const handleLoginClick = async () => {
-    setLoading(true);
+    setLoadingGithub(true);
     const result = await signIn("github", { callbackUrl: "/" });
     if (result?.error) {
       console.error("Failed to sign in: ", result.error);
     } else {
       router.push("/");
     }
-    setLoading(false);
+    setLoadingGithub(false);
   };
   return (
     <section className="flex flex-col items-center justify-center">
@@ -179,6 +181,12 @@ export const RegisterForm = () => {
           </>
         )}
       </Button>
+      <p className="mt-8">
+        Já tem uma conta?{" "}
+        <Link href="/login" className="text-blue-500">
+          Faça login.
+        </Link>
+      </p>
     </section>
   );
 };
