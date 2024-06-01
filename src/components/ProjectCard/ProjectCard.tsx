@@ -94,6 +94,17 @@ export const ProjectCard = ({ project, user }: ProjectCardProps) => {
             </Button>
           </Link>
         </div>
+        <div className="w-full">
+          <Link
+            target="_blank"
+            className="w-1/2"
+            href={`/project/${project.id}`}
+          >
+            <Button className="w-full" variant={"link"}>
+              Detalhes
+            </Button>
+          </Link>
+        </div>
       </CardFooter>
     </Card>
   );
