@@ -108,7 +108,7 @@ export function MobileNav() {
               </Button>
               <Button variant="outline" className="justify-start" asChild>
                 <Link
-                  href="/add-project"
+                  href="/new-project"
                   className={cn(
                     "transition-colors hover:text-foreground/80",
                     pathname?.startsWith("/add-project")

@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className={`${inter.className} dark`}>
         <AuthProvider>
         {pathname !== '/login' && pathname !== '/register' && <Header />}
-          <div className="flex-1">{children}</div>
+          <div className="px-8 max-md:px-0 flex-1">{children}</div>
           <Toaster />
           {pathname !== '/login' && pathname !== '/register' && <Footer />}
         </AuthProvider>

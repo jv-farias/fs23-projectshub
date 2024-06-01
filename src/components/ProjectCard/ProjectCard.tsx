@@ -30,7 +30,7 @@ export const ProjectCard = ({ project, user }: ProjectCardProps) => {
             src={project.thumbnail}
             style={{ objectFit: "cover" }}
             fill
-            className="rounded-xl bg-red-400"
+            className="rounded-xl"
             alt={project.name}
           />
         </div>
