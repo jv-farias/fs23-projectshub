@@ -31,12 +31,12 @@ export const Header = () => {
           <nav className="flex items-center gap-4">
             {!data?.user && (
               <div className="max-md:hidden flex gap-4">
-                <Link href={"/sign_in"}>
+                <Link href={"/login"}>
                   <Button variant={"default"} className="font-semibold">
                     Fazer Login
                   </Button>
                 </Link>
-                <Link href={"/sign_up"}>
+                <Link href={"/register"}>
                   <Button variant={"secondary"} className="font-semibold">
                     Fazer Cadastro
                   </Button>

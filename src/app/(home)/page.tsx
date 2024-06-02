@@ -21,8 +21,8 @@ const SideMenu = async () => {
 
   return (
     <>
-      <main className=" py-10 px-10 max-lg:w-full w-[90%] mx-auto ">
-        <div className="pt-10 pb-12 md:pt-32 md:pb-10">
+      <main className="px-10 max-lg:w-full w-[90%] mx-auto ">
+        <div className="pb-12 md:pt-32 md:pb-10">
           <div className="text-center pb-12 md:pb-16">
             <h1
               data-aos="zoom-y-out"

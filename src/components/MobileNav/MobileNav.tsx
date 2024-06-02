@@ -181,12 +181,12 @@ export function MobileNav() {
           </Button>
           {!data?.user && (
             <>
-              <Link href={"/sign_in"}>
+              <Link href={"/login"}>
                 <Button variant={"default"} className="w-full font-semibold">
                   Fazer Login
                 </Button>
               </Link>
-              <Link href={"/sign_up"}>
+              <Link href={"/register"}>
                 <Button variant={"secondary"} className="w-full font-semibold">
                   Fazer Cadastro
                 </Button>
