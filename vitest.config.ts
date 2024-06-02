@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
+    setupFiles: "src/setupTests.ts",
     globals: true,
     typecheck: {
       enabled: false // speedup tests
