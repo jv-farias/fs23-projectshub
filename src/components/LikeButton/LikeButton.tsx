@@ -21,8 +21,8 @@ export const LikeButton = ({ projectId }: LikeButtonProps) => {
       try {
         await addLike({ userId: userId, projectId: projectId });
         setLiked(true);
-      } catch (error: Error) {
-        if (error.message === "User has already liked this project") {
+      } catch (error: unknown) {
+        if ((error as Error).message === "User has already liked this project") {
           setLiked(true);
         }
       }
