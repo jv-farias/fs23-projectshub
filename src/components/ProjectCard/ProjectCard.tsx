@@ -6,24 +6,30 @@ import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
+import { db } from "@/lib/prisma";
 
 interface ProjectCardProps {
   project: Project;
   user: User;
 }
 
-export const ProjectCard = ({ project, user }: ProjectCardProps) => {
+export const ProjectCard = async ({ project, user }: ProjectCardProps) => {
+  const likesCount = await db.like.count({
+    where: { projectId: project.id },
+  });
+
+
   return (
-    <Card className="max-md:min-w-full min-w-[285px] max-w-[285px] flex flex-col gap-4 p-4 rounded-2xl">
+    <Card className="max-md:min-w-[80%] min-w-[280px] max-w-[280px] flex flex-col gap-4 p-4 rounded-2xl">
       <CardHeader className="p-0">
-        <div className="relative w-full h-[190px]">
+        <div className="relative w-full max-md:h-[150px] h-[180px]">
           <div className="absolute top-2.5 left-1.5 z-50">
             <Badge
               variant="secondary"
               className="flex gap-1 items-center top-2 left-2 "
             >
               <FaHeart size={12} className="fill-pink-600 text-primary" />
-              <span className="text-xs">{project.likes.valueOf()}</span>
+              <span className="text-xs"> {likesCount}</span>{" "}
             </Badge>
           </div>
           <Image

@@ -20,8 +20,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { BookTextIcon, FolderPen, ImageIcon, Link } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { ImageUpload } from "../ImageUpload";
 
 const formSchema = z.object({
   projectName: z.string().min(2, {
@@ -48,6 +50,8 @@ export const ProjectForm = () => {
   const { toast } = useToast();
   const router = useRouter();
 
+  const [imagePreview, setImagePreview] = useState<string>("");
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -60,7 +64,15 @@ export const ProjectForm = () => {
     },
   });
 
+  const handleImageUploaded = (url: string) => {
+    setImagePreview(url);
+    form.setValue("imagePreview", url);
+  };
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    const isValid = await form.trigger("imagePreview");
+    if (!isValid) return;
+
     try {
       const userId = data?.user?.id;
       if (!userId) {
@@ -105,16 +117,16 @@ export const ProjectForm = () => {
           name="projectName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Project Name</FormLabel>
+              <FormLabel>Nome do Projeto</FormLabel>
               <FormControl>
                 <div className="flex">
                   <div className="bg-secondary h-10 flex items-center justify-center rounded-l-lg min-w-10 max-w-10">
                     <FolderPen className="w-[18px] opacity-30" />
                   </div>
                   <Input
-                    placeholder="Project Name"
+                    placeholder="Nome do Projeto"
                     {...field}
-                    className="rounded-l-none"
+                    className="rounded-none rounded-r-md"
                   />
                 </div>
               </FormControl>
@@ -136,7 +148,7 @@ export const ProjectForm = () => {
                   <Textarea
                     placeholder="Description your project"
                     {...field}
-                    className="rounded-l-none min-h-[100px]"
+                    className="rounded-none rounded-r-md min-h-[100px]"
                   />
                 </div>
               </FormControl>
@@ -149,20 +161,14 @@ export const ProjectForm = () => {
           name="imagePreview"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Image Preview</FormLabel>
               <FormControl>
                 <div className="flex">
-                  <div className="bg-secondary h-10 flex items-center justify-center rounded-l-lg min-w-10 max-w-10">
+                  <div className="bg-secondary flex items-center justify-center rounded-l-lg min-w-10 max-w-10">
                     <ImageIcon className="w-[18px] opacity-30" />
                   </div>
-                  <Input
-                    placeholder="www.image-link.com"
-                    {...field}
-                    className="rounded-l-none"
-                  />
+                  <ImageUpload value={field.value} onChange={field.onChange} />
                 </div>
               </FormControl>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -180,7 +186,7 @@ export const ProjectForm = () => {
                   <Input
                     placeholder="www.your-preview-link.com"
                     {...field}
-                    className="rounded-l-none"
+                    className="rounded-none rounded-r-md"
                   />
                 </div>
               </FormControl>
@@ -202,7 +208,7 @@ export const ProjectForm = () => {
                   <Input
                     placeholder="www.github.com/your-project"
                     {...field}
-                    className="rounded-l-none"
+                    className="rounded-none rounded-r-md"
                   />
                 </div>
               </FormControl>

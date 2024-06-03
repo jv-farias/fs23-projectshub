@@ -1,4 +1,5 @@
 import { CommentBox } from "@/components/CommentBox";
+import { LikeButton } from "@/components/LikeButton";
 import { Badge } from "@/components/ui/badge";
 import { db } from "@/lib/prisma";
 import { CalendarIcon, CodeIcon } from "lucide-react";
@@ -17,19 +18,15 @@ const ProjectDetailPage = async ({ params }: ProjectPageProps) => {
   });
 
   return (
-    <main className="container mx-auto mb-8 px-4 md:px-6 lg:px-8">
+    <main className="container mx-auto my-12 px-4 md:px-6 lg:px-8">
       <div className="grid gap-8 md:grid-cols-[1fr_300px]">
         <div>
           <Image
             alt="Project Thumbnail"
-            className="w-full rounded-lg object-cover"
-            height={400}
+            className="w-full overflow-hidden rounded-lg object-cover"
+            width={1500}
+            height={1500}
             src={project?.thumbnail ? project?.thumbnail : ""}
-            style={{
-              aspectRatio: "700/400",
-              objectFit: "cover",
-            }}
-            width={700}
           />
           <div className="mt-6 flex  flex-col flex-wrap items-start gap-3 text-sm text-gray-500 dark:text-gray-400">
             <div className="flex items-center gap-1">
@@ -62,6 +59,7 @@ const ProjectDetailPage = async ({ params }: ProjectPageProps) => {
           <p className="mt-4 text-gray-500 dark:text-gray-400">
             {project?.description}
           </p>
+          <LikeButton projectId={params.id ? params.id : ""} />
         </div>
         <div className="space-y-8">
           <CommentBox projectId={params.id} />

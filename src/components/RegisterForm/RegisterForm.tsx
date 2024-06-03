@@ -69,7 +69,7 @@ export const RegisterForm = () => {
       console.error("Failed to register");
       return;
     }
-    router.push("/sign_in");
+    router.push("/login");
     setLoading(false);
   };
 
