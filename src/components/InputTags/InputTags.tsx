@@ -50,7 +50,7 @@ export const InputTags = forwardRef<HTMLInputElement, InputTagsProps>(
           <Button
             type="button"
             variant="secondary"
-            className="rounded-l-none border border-l-0"
+            className="rounded-none rounded-r-md border border-l-0"
             onClick={addPendingDataPoint}
           >
             Add
