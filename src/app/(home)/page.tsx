@@ -1,21 +1,27 @@
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { PhoneMock } from "@/components/PhoneMock";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 import { db } from "@/lib/prisma";
 import Link from "next/link";
 
 const SideMenu = async () => {
-  const projects = await db.project.findMany({
+  
+  const recentProject = await db.project.findMany({
     include: {
       user: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  const moreLikedProjects = await db.project.findMany({
+    include: {
+      user: true,
+    },
+    orderBy: {
+      likes: "desc",
     },
   });
 
@@ -69,7 +75,7 @@ const SideMenu = async () => {
           </div>
         </div>
         <Hero />
-        <section className="container flex flex-col items-center max-w-screen-2xl mt-32 border-y-2 border-y-secondary py-20">
+        <section className="container flex flex-col items-center max-w-screen-2xl lg:mt-32 border-y-2 border-y-secondary py-20">
           <h3
             data-aos="zoom-y-out"
             className="z-20 text-4xl text-center md:text-5xl lg:text-6xl xl:text-7xl bg-clip-text font-extrabold leading-tighter tracking-tighter pb-10 text-transparent bg-gradient-to-r from-blue-500 to-teal-400"
@@ -107,23 +113,20 @@ const SideMenu = async () => {
                 <span className="font-semibold">{""} Rodrigo</span>,
                 <span className="font-semibold">{""} Gabriel Collares</span> e
                 <span className="font-semibold">{""} Matheus</span>.
-              </p>  
+              </p>
             </div>
 
             <PhoneMock />
           </div>
         </section>
 
-        <section className="container flex flex-col max-w-screen-2xl mt-32">
-          <h3
-            data-aos="zoom-y-out"
-            className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl bg-clip-text font-extrabold leading-tighter tracking-tighter pb-10 text-transparent bg-white"
-          >
-            Nossos Projetos
-          </h3>
+        <section
+          data-aos="zoom-y-out"
+          className="container flex flex-col max-w-screen-2xl mt-32"
+        >
           <h3 className="font-bold mb-4">Recentes</h3>
           <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-            {projects.map((project) => {
+            {recentProject.map((project) => {
               return (
                 <ProjectCard
                   project={project}
@@ -135,10 +138,13 @@ const SideMenu = async () => {
           </div>
         </section>
 
-        <section className="container flex flex-col max-w-screen-2xl my-10">
+        <section
+          data-aos="zoom-y-out"
+          className="container flex flex-col max-w-screen-2xl my-10"
+        >
           <h3 className="font-bold mb-4">Mais Curtidos</h3>
           <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-            {projects.map((project) => {
+            {moreLikedProjects.map((project) => {
               return (
                 <ProjectCard
                   project={project}
