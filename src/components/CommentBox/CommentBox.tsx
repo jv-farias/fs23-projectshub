@@ -1,22 +1,18 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
-import { CommentForm } from "../CommentForm";
 import { db } from "@/lib/prisma";
-import { CommentCard } from "../CommentCard";
-import { formatDistanceToNow } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import {
-  differenceInMinutes,
-  differenceInHours,
   differenceInDays,
+  differenceInHours,
+  differenceInMinutes,
   differenceInWeeks,
 } from "date-fns";
+import { CommentCard } from "../CommentCard";
+import { CommentForm } from "../CommentForm";
 
 function formatCommentDate(date: Date | string) {
   const now = new Date();
@@ -72,7 +68,6 @@ export const CommentBox = async ({ projectId }: any) => {
           </div>
         </CardContent>
       </Card>
-      
     </div>
     <CommentForm projectId={projectId} />
     </>
