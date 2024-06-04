@@ -1,5 +1,6 @@
 import { ProjectCard } from "@/components/ProjectCard";
 import { db } from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 
 const ExplorePage = async () => {
   const recentProject = await db.project.findMany({
