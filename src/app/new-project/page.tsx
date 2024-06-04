@@ -11,7 +11,7 @@ const NewProjectPage = async () => {
 
   return (
     <>
-      <main className="container max-w-[1280px] ">
+      <main className="container max-w-6xl">
         <div className="flex flex-col gap-4 mb-8">
           <h1 className="text-4xl bg-clip-text font-extrabold self-center leading-tighter tracking-tighter text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
             Participe da nossa comunidade

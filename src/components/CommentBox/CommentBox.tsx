@@ -45,7 +45,7 @@ export const CommentBox = async ({ projectId }: any) => {
 
   return (
     <>
-    <div className="space-y-8 md:max-h-[600px]  overflow-y-auto ">
+    <div className="space-y-8 md:max-h-[600px] overflow-y-auto ">
       <Card>
         <CardHeader>
           <CardTitle>Comentários</CardTitle>
