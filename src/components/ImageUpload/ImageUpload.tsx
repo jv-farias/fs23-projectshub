@@ -33,21 +33,23 @@ export const ImageUpload = ({ onChange, value }: FileUploadProps) => {
     <UploadDropzone
       appearance={{
         button: {
-          marginTop: "25px",
+          marginTop: "15px",
+        },
+        container: {
+          overflow: "hidden",
         },
       }}
       content={{
-        label: "Importe ou arraste uma imagem",
+        label: "Importe uma imagem",
         allowedContent({ ready, fileTypes, isUploading }) {
           fileTypes = ["image/.png, .jpg, .jpeg"];
           if (!ready) return "Verificando o que você permite";
           if (isUploading) return "Parece que algo está sendo carregado";
-          return `Tipos de arquivos que você pode carregar: ${fileTypes.join(", ")}`;
+          return `${fileTypes.join(", ")}`;
         },
         button({ ready }) {
           if (!ready) return "Carregando...";
         },
-        
       }}
       endpoint="imageUploader"
       className="flex mt-0 w-full max-md:w-full rounded-none rounded-r-md border border-solid border-input  bg-background px-3 py-4 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"

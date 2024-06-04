@@ -194,8 +194,8 @@ export function MobileNav() {
             </>
           )}
           {data?.user && (
-            <Button onClick={handleLogoutClick} variant="outline">
-              <LogOutIcon className="w-[18px] h-[18px] mr-2" />
+            <Button onClick={handleLogoutClick} className="justify-start w-full text-foreground/60 " variant="outline">
+              <LogOutIcon className="w-[18px] text-foreground/60  h-[18px] mr-2" />
               Sair
             </Button>
           )}
