@@ -11,16 +11,17 @@ import { db } from "@/lib/prisma";
 interface ProjectCardProps {
   project: Project;
   user: User;
+  maxWidth?: boolean;
 }
 
-export const ProjectCard = async ({ project, user }: ProjectCardProps) => {
+export const ProjectCard = async ({ project, user, maxWidth }: ProjectCardProps) => {
   const likesCount = await db.like.count({
     where: { projectId: project.id },
   });
 
 
   return (
-    <Card className="max-md:min-w-[80%] min-w-[280px] max-w-[280px] flex flex-col gap-4 p-4 rounded-2xl">
+    <Card className={maxWidth ? 'max-w-[280px] max-md:min-w-[80%] min-w-[280px] flex flex-col gap-4 p-4 rounded-2xl ' : "max-md:min-w-[80%] min-w-[280px] flex flex-col gap-4 p-4 rounded-2xl"}>
       <CardHeader className="p-0">
         <div className="relative w-full max-md:h-[150px] h-[180px]">
           <div className="absolute top-2.5 left-1.5 z-50">
@@ -36,7 +37,7 @@ export const ProjectCard = async ({ project, user }: ProjectCardProps) => {
             src={project.thumbnail}
             style={{ objectFit: "cover" }}
             fill
-            className="rounded-xl"
+            className="rounded-xl min-h-[150px]"
             alt={project.name}
           />
         </div>
@@ -102,7 +103,6 @@ export const ProjectCard = async ({ project, user }: ProjectCardProps) => {
         </div>
         <div className="w-full">
           <Link
-            target="_blank"
             className="w-1/2"
             href={`/project/${project.id}`}
           >

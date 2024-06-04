@@ -23,8 +23,8 @@ export const Header = () => {
   };
   
   return (
-    <header className="sticky py-3 max-lg:w-full w-full max-md:px-0 px-8 mx-auto top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mb-10">
-      <div className="container flex h-14  max-w-screen-2xl items-center">
+    <header className="sticky py-1 w-full top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mb-4">
+      <div className="container max-w-6xl flex h-14 items-center">
         <MainNav />
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
@@ -98,8 +98,8 @@ export const Header = () => {
                       Meus Projetos
                     </Link>
                   </Button>
-                  <Button onClick={handleLogoutClick} variant="outline">
-                    <LogOutIcon className="w-[18px] h-[18px] mr-2" />
+                  <Button onClick={handleLogoutClick} className=" text-foreground/60" variant="outline">
+                    <LogOutIcon className="text-foreground/60 w-[18px] h-[18px] mr-2" />
                     Sair
                   </Button>
                 </HoverCardContent>

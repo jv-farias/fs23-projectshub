@@ -27,7 +27,7 @@ const SideMenu = async () => {
 
   return (
     <>
-      <main className="px-10 max-lg:w-full w-[90%] mx-auto ">
+      <main className="container max-w-6xl px-10 max-lg:w-full  mx-auto ">
         <div className="pb-12 md:pt-32 md:pb-10">
           <div className="text-center pb-12 md:pb-16">
             <h1
@@ -75,7 +75,7 @@ const SideMenu = async () => {
           </div>
         </div>
         <Hero />
-        <section className="container flex flex-col items-center max-w-screen-2xl lg:mt-32 border-y-2 border-y-secondary py-20">
+        <section className="container px-0  flex flex-col items-center max-w-screen-2xl lg:mt-32 border-y-2 border-y-secondary py-20">
           <h3
             data-aos="zoom-y-out"
             className="z-20 text-4xl text-center md:text-5xl lg:text-6xl xl:text-7xl bg-clip-text font-extrabold leading-tighter tracking-tighter pb-10 text-transparent bg-gradient-to-r from-blue-500 to-teal-400"
@@ -122,7 +122,7 @@ const SideMenu = async () => {
 
         <section
           data-aos="zoom-y-out"
-          className="container flex flex-col max-w-screen-2xl mt-32"
+          className="container px-0 flex flex-col max-w-screen-2xl mt-32"
         >
           <h3 className="font-bold mb-4">Recentes</h3>
           <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
@@ -140,7 +140,7 @@ const SideMenu = async () => {
 
         <section
           data-aos="zoom-y-out"
-          className="container flex flex-col max-w-screen-2xl my-10"
+          className="container px-0 flex flex-col max-w-screen-2xl my-10"
         >
           <h3 className="font-bold mb-4">Mais Curtidos</h3>
           <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">

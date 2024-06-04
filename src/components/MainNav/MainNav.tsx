@@ -13,7 +13,9 @@ export function MainNav() {
         <h1 className="h-6 font-bold">DC TEAM 23</h1>
       </Link>
       <nav className="flex items-center gap-4 text-sm lg:gap-6">
-        <Link href="/" className={cn(
+        <Link
+          href="/"
+          className={cn(
             "transition-colors hover:text-foreground/80",
             pathname === "/" ? "text-foreground" : "text-foreground/60"
           )}
@@ -21,7 +23,9 @@ export function MainNav() {
           Home
         </Link>
 
-        <Link href="/explore" className={cn(
+        <Link
+          href="/explore"
+          className={cn(
             "transition-colors hover:text-foreground/80",
             pathname?.startsWith("/explore")
               ? "text-foreground"
