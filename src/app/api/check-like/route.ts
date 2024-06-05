@@ -1,17 +1,17 @@
 "use server";
 import { db } from "@/lib/prisma";
-import { NextApiRequest, NextApiResponse } from "next";
-
+import { type NextRequest, NextResponse } from "next/server";
 interface CheckLikeResponse {
   isLiked: boolean;
   error?: string;
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<CheckLikeResponse>
-) {
-  const { userId, projectId } = req.query;
+export async function GET(
+  req: NextRequest,
+  _res: NextResponse<CheckLikeResponse>
+): Promise<NextResponse | void> {
+  const userId = req.nextUrl.searchParams.get("userId");
+  const projectId = req.nextUrl.searchParams.get("projectId");
 
   try {
     const existingLike = await db.like.findFirst({
@@ -20,10 +20,15 @@ export default async function handler(
         projectId: projectId?.toString(),
       },
     });
-
-    res.status(200).json({ isLiked: existingLike !== null });
+    return NextResponse.json(
+      { isLiked: existingLike !== null },
+      { status: 200 }
+    );
   } catch (error) {
     console.error("Erro ao verificar o like:", error);
-    res.status(500).json({ isLiked: false, error: "Erro ao verificar o like" });
+    return NextResponse.json(
+      { isLiked: false, error: "Erro ao verificar o like" },
+      { status: 500 }
+    );
   }
 }
