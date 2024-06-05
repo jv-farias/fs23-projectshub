@@ -1,14 +1,10 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { db } from "@/lib/prisma";
 import {
   differenceInDays,
   differenceInHours,
   differenceInMinutes,
+  differenceInSeconds,
   differenceInWeeks,
 } from "date-fns";
 import { CommentCard } from "../CommentCard";
@@ -30,6 +26,9 @@ function formatCommentDate(date: Date | string) {
   const diffInMinutes = differenceInMinutes(now, commentDate);
   if (diffInMinutes > 0) return `${diffInMinutes}min`;
 
+  const diffInSeconds = differenceInSeconds(now, commentDate);
+  if (diffInSeconds > 0) return `${diffInSeconds}seg`;
+
   return "agora";
 }
 
@@ -45,31 +44,33 @@ export const CommentBox = async ({ projectId }: any) => {
 
   return (
     <>
-    <div className="space-y-8 md:max-h-[600px] overflow-y-auto ">
-      <Card>
-        <CardHeader>
-          <CardTitle>Comentários</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {comments.map((comment) => (
-              <CommentCard
-                key={comment.id}
-                avatar={comment.user.image ? comment.user.image : ""}
-                username={comment.user.name ? comment.user.name : ""}
-                content={comment.content}
-                createdAt={
-                  comment.createdAt
-                    ? `${formatCommentDate(comment.createdAt)}`
-                    : ""
-                }
-              />
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    </div>
-    <CommentForm projectId={projectId} />
+      <CardTitle>Comentários</CardTitle>
+      <div className="space-y-8 overflow-y-auto ">
+        <Card>
+          <CardContent>
+            <div className="space-y-4 mt-6">
+              {comments.length > 0 ? (
+                comments.map((comment) => (
+                  <CommentCard
+                    key={comment.id}
+                    avatar={comment.user.image ? comment.user.image : ""}
+                    username={comment.user.name ? comment.user.name : ""}
+                    content={comment.content}
+                    createdAt={
+                      comment.createdAt
+                        ? `${formatCommentDate(comment.createdAt)}`
+                        : ""
+                    }
+                  />
+                ))
+              ) : (
+                <p>Nenhum comentário</p>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+      <CommentForm projectId={projectId} />
     </>
   );
 };

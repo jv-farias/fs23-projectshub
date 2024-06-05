@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import { Footer } from "@/components/Footer";
 import { LoginForm } from "@/components/LoginForm";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
