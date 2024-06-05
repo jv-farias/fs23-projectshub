@@ -15,20 +15,20 @@ export const removeLike = async (params: RemoveLikeParams) => {
     );
   }
 
-  const existingLike = await db.like.findFirst({
+  const likeToDelete = await db.like.findFirst({
     where: {
       userId: params.userId,
       projectId: params.projectId,
     },
   });
 
-  if (!existingLike) {
-    throw new Error("No like found for this user and project");
+  if (!likeToDelete) {
+    throw new Error("Like não encontrado."); 
   }
 
   await db.like.delete({
     where: {
-      id: existingLike.id,
+      id: likeToDelete.id, 
     },
   });
 

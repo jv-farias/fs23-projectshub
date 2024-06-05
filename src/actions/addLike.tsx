@@ -15,17 +15,6 @@ export const addLike = async (params: AddLikeParams) => {
     );
   }
 
-  const existingLike = await db.like.findFirst({
-    where: {
-      userId: params.userId,
-      projectId: params.projectId,
-    },
-  });
-
-  if (existingLike) {
-    throw new Error("User has already liked this project");
-  }
-
   await db.like.create({
     data: {
       user: {
