@@ -5,6 +5,12 @@ import "@uploadthing/react/styles.css";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTrigger
+} from "../ui/dialog";
 
 interface FileUploadProps {
   onChange: (url?: string) => void;
@@ -17,7 +23,28 @@ export const ImageUpload = ({ onChange, value }: FileUploadProps) => {
   if (value && fileType) {
     return (
       <div className="relative h-24 w-24 ml-4">
-        <Image fill src={value} alt="Upload" className=" rounded-sm" />
+        <Dialog>
+          <DialogTrigger>
+            <Image
+              fill
+              src={value}
+              alt="Upload"
+              className=" object-cover rounded-sm"
+            />
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader className="font-bold text-left">
+              Pré-visualização
+            </DialogHeader>
+            <Image
+              width={600}
+              height={600}
+              src={value}
+              alt="Upload"
+              className=" object-cover rounded-sm"
+            />
+          </DialogContent>
+        </Dialog>
         <Button
           variant={"destructive"}
           onClick={() => onChange("")}
@@ -34,6 +61,7 @@ export const ImageUpload = ({ onChange, value }: FileUploadProps) => {
       appearance={{
         button: {
           marginTop: "15px",
+          cursor: "pointer",
         },
         container: {
           overflow: "hidden",
@@ -53,14 +81,8 @@ export const ImageUpload = ({ onChange, value }: FileUploadProps) => {
       }}
       endpoint="imageUploader"
       className="flex mt-0 w-full max-md:w-full rounded-none rounded-r-md border border-solid border-input  bg-background px-3 py-4 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-      onUploadProgress={(progress) => {
-        console.log(progress);
-      }}
       onClientUploadComplete={(res) => {
         onChange(res?.[0].url);
-      }}
-      onUploadError={(error: Error) => {
-        console.log(error);
       }}
     />
   );

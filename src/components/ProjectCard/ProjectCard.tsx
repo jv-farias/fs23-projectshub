@@ -14,14 +14,23 @@ interface ProjectCardProps {
   maxWidth?: boolean;
 }
 
-export const ProjectCard = async ({ project, user, maxWidth }: ProjectCardProps) => {
+export const ProjectCard = async ({
+  project,
+  user,
+  maxWidth,
+}: ProjectCardProps) => {
   const likesCount = await db.like.count({
     where: { projectId: project.id },
   });
 
-
   return (
-    <Card className={maxWidth ? 'max-w-[280px] max-md:min-w-[80%] min-w-[280px] flex flex-col gap-4 p-4 rounded-2xl ' : "max-md:min-w-[80%] min-w-[280px] flex flex-col gap-4 p-4 rounded-2xl"}>
+    <Card
+      className={
+        maxWidth
+          ? "max-w-[280px] max-md:min-w-[80%] min-w-[280px] flex flex-col gap-4 p-4 rounded-2xl "
+          : "max-md:min-w-[80%] min-w-[280px] flex flex-col gap-4 p-4 rounded-2xl"
+      }
+    >
       <CardHeader className="p-0">
         <div className="relative w-full max-md:h-[150px] h-[180px]">
           <div className="absolute top-2.5 left-1.5 z-50">
@@ -72,8 +81,8 @@ export const ProjectCard = async ({ project, user, maxWidth }: ProjectCardProps)
         </div>
       </CardContent>
       <CardFooter className="p-0 flex flex-col gap-4">
-        <div className="w-full flex justify-start">
-          <div className="w-full flex gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+        <div className="w-full flex justify-start overflow-x-auto max-md:[&::-webkit-scrollbar]:hidden">
+          <div className="w-full flex gap-3">
             {project.techStack.map((stack, index) => {
               return (
                 <Badge className="text-nowrap" key={index}>
@@ -102,10 +111,7 @@ export const ProjectCard = async ({ project, user, maxWidth }: ProjectCardProps)
           </Link>
         </div>
         <div className="w-full">
-          <Link
-            className="w-1/2"
-            href={`/project/${project.id}`}
-          >
+          <Link className="w-1/2" href={`/project/${project.id}`}>
             <Button className="w-full" variant={"link"}>
               Detalhes
             </Button>

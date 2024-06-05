@@ -9,19 +9,17 @@ import { MainNav } from "../MainNav";
 import { MobileNav } from "../MobileNav";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "../ui/hover-card";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card";
+import { Icons } from "../Icons";
 export const Header = () => {
+
   const { data } = useSession();
   const pathname = usePathname();
-
+  
   const handleLogoutClick = () => {
     signOut();
   };
-  
+
   return (
     <header className="sticky py-1 w-full top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mb-4">
       <div className="container max-w-6xl flex h-14 items-center">
@@ -40,6 +38,11 @@ export const Header = () => {
                   <Button variant={"secondary"} className="font-semibold">
                     Fazer Cadastro
                   </Button>
+                </Link>
+                <Link
+                  href={"https://www.github.com/jv-farias/fs23-projectshub"}
+                >
+                  <Icons.GitHub className="max-md:hidden bg-transparent transition-all rounded hover:bg-secondary p-2 min-w-10 min-h-10 max-w-10 max-h-10" />
                 </Link>
               </div>
             )}
@@ -98,7 +101,11 @@ export const Header = () => {
                       Meus Projetos
                     </Link>
                   </Button>
-                  <Button onClick={handleLogoutClick} className=" text-foreground/60" variant="outline">
+                  <Button
+                    onClick={handleLogoutClick}
+                    className=" text-foreground/60"
+                    variant="outline"
+                  >
                     <LogOutIcon className="text-foreground/60 w-[18px] h-[18px] mr-2" />
                     Sair
                   </Button>

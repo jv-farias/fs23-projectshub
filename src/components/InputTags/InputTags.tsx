@@ -38,7 +38,7 @@ export const InputTags = forwardRef<HTMLInputElement, InputTagsProps>(
               if (e.key === "Enter") {
                 e.preventDefault();
                 addPendingDataPoint();
-              } else if (e.key === "," || e.key === " ") {
+              } else if (e.key === ",") {
                 e.preventDefault();
                 addPendingDataPoint();
               }
@@ -53,10 +53,10 @@ export const InputTags = forwardRef<HTMLInputElement, InputTagsProps>(
             className="rounded-none rounded-r-md border border-l-0"
             onClick={addPendingDataPoint}
           >
-            Add
+            Adicionar
           </Button>
         </div>
-        <p className="text-xs">Pressione Enter para adicionar</p>
+        <p className="text-xs opacity-60">Pressione Enter para adicionar</p>
         <div className="border mt-3 rounded-md min-h-[2.5rem] overflow-y-auto p-2 flex gap-2 flex-wrap items-center">
           {value.length > 0 ? (
             value.map((item, idx) => (
