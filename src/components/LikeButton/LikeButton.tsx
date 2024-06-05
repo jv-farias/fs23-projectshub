@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { LikeButtonProps } from "./types";
+import { db } from "@/lib/prisma";
 
 export const LikeButton = ({ projectId }: LikeButtonProps) => {
   const { data } = useSession();
@@ -22,14 +23,18 @@ export const LikeButton = ({ projectId }: LikeButtonProps) => {
         return;
       }
       try {
-        await addLike({ userId: userId, projectId: projectId });
-        setLiked(true);
-      } catch (error: unknown) {
-        if (
-          (error as Error).message === "User has already liked this project"
-        ) {
+        const existingLike = await db.like.findFirst({
+          where: {
+            userId: userId,
+            projectId: projectId,
+          },
+        });
+
+        if (existingLike) {
           setLiked(true);
         }
+      } catch (error: unknown) {
+        console.error("Error checking like:", error);
       }
     };
     checkLike();
