@@ -27,28 +27,33 @@ import { ImageUpload } from "../ImageUpload";
 
 const formSchema = z.object({
   projectName: z.string().min(2, {
-    message: "Project name must be at least 3 characters.",
+    message: "Nome do projeto deve ter no mínimo 2 caracteres",
   }),
   description: z
     .string()
-    .min(3, { message: "Description project must be at least 3 characters" })
-    .max(255, {
-      message: "Description project must be at maximum 255 characters",
+    .min(3, { message: "Descrição do projeto deve ter no mínimo 3 caracteres" })
+    .max(1000, {
+      message: "Descrição do projeto deve ter no máximo 1000 caracteres",
     }),
   previewLink: z.string().url({
-    message: "Preview Link must be valid",
+    message: "Link de preview deve ser válido",
   }),
-  repositoryLink: z.string().url({ message: "Repository Link must be valid" }),
-  imagePreview: z.string().url({ message: "Image URL is required" }),
+  repositoryLink: z
+    .string()
+    .url({ message: "Link do repositório deve ser válido" }),
+  imagePreview: z
+    .string()
+    .url({ message: "Imagem de preview deve ser válida" }),
   technologies: z
     .array(z.string())
-    .min(1, { message: "At least one technology is required" }),
+    .min(1, { message: "Adicione pelo menos uma tecnologia" }),
 });
 
 export const ProjectForm = () => {
   const { data } = useSession();
   const { toast } = useToast();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const [imagePreview, setImagePreview] = useState<string>("");
 
@@ -70,6 +75,7 @@ export const ProjectForm = () => {
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
     const isValid = await form.trigger("imagePreview");
     if (!isValid) return;
 
@@ -106,6 +112,8 @@ export const ProjectForm = () => {
       });
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -139,14 +147,14 @@ export const ProjectForm = () => {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>Descrição</FormLabel>
               <FormControl>
                 <div className="flex">
                   <div className="bg-secondary h-10 flex items-center justify-center rounded-l-lg min-h-[100px] min-w-10">
                     <BookTextIcon className="w-[18px] opacity-30" />
                   </div>
                   <Textarea
-                    placeholder="Description your project"
+                    placeholder="Breve resumo do projeto"
                     {...field}
                     className="rounded-none rounded-r-md min-h-[100px]"
                   />
@@ -161,6 +169,7 @@ export const ProjectForm = () => {
           name="imagePreview"
           render={({ field }) => (
             <FormItem>
+              <FormLabel>Thumbnail</FormLabel>
               <FormControl>
                 <div className="flex">
                   <div className="bg-secondary flex items-center justify-center rounded-l-lg min-w-10 max-w-10">
@@ -169,6 +178,7 @@ export const ProjectForm = () => {
                   <ImageUpload value={field.value} onChange={field.onChange} />
                 </div>
               </FormControl>
+              <FormMessage></FormMessage>
             </FormItem>
           )}
         />
@@ -177,14 +187,14 @@ export const ProjectForm = () => {
           name="previewLink"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Preview Link </FormLabel>
+              <FormLabel>Link de Preview</FormLabel>
               <FormControl>
                 <div className="flex">
                   <div className="bg-secondary h-10 flex items-center justify-center rounded-l-lg min-w-10 max-w-10">
                     <Link className="w-[18px] opacity-30" />
                   </div>
                   <Input
-                    placeholder="www.your-preview-link.com"
+                    placeholder="www.seuprojeto.com.br"
                     {...field}
                     className="rounded-none rounded-r-md"
                   />
@@ -199,14 +209,14 @@ export const ProjectForm = () => {
           name="repositoryLink"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Repository Link </FormLabel>
+              <FormLabel>Link do Repositório</FormLabel>
               <FormControl>
                 <div className="flex">
                   <div className="bg-secondary h-10 flex items-center justify-center rounded-l-lg min-w-10 max-w-10">
                     <Icons.GitHub className="w-[18px] opacity-30" />
                   </div>
                   <Input
-                    placeholder="www.github.com/your-project"
+                    placeholder="www.github.com/seu-usuario/nome-do-projeto"
                     {...field}
                     className="rounded-none rounded-r-md"
                   />
@@ -221,7 +231,7 @@ export const ProjectForm = () => {
           name="technologies"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Add Technologies</FormLabel>
+              <FormLabel>Tecnologias</FormLabel>
               <FormControl>
                 <InputTags {...field} />
               </FormControl>
@@ -229,9 +239,17 @@ export const ProjectForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">
-          Submit
-        </Button>
+
+        {loading ? (
+          <Button disabled className=" w-full">
+            <Icons.Spinner className="mr-2 animate-spin w-5 h-5" />
+            Publicando...
+          </Button>
+        ) : (
+          <Button type="submit" className="w-full">
+            Publicar Projeto
+          </Button>
+        )}
       </form>
     </Form>
   );

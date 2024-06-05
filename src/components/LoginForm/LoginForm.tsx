@@ -27,9 +27,9 @@ export const LoginForm = () => {
   const [loadingGithub, setLoadingGithub] = useState(false);
 
   const formSchema = z.object({
-    email: z.string().email({ message: "Invalid email address." }),
+    email: z.string().email({ message: "Email inválido" }),
     password: z.string().min(8, {
-      message: "Password must be at least 8 characters.",
+      message: "A senha deve ter no mínimo 8 caracteres", 
     }),
   });
 

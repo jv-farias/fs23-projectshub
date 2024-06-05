@@ -12,12 +12,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CommentFormProps } from "./types";
-import { useState } from "react";
-import { SpinnerIcon } from "../Icons/index.stories";
 import { Spinner } from "../Icons/Icons";
+import { CommentFormProps } from "./types";
+
 const formSchema = z.object({
   content: z.string().min(1, {
     message: "Comentário deve ter pelo menos 1 caractere.",
@@ -66,11 +66,7 @@ export const CommentForm = ({ projectId }: CommentFormProps) => {
             <FormItem>
               <FormControl>
                 <div className="flex">
-                  <Input
-                    placeholder="Adicione um comentário..."
-                    {...field}
-                    className="rounded-l-none"
-                  />
+                  <Input placeholder="Adicione um comentário..." {...field} />
                 </div>
               </FormControl>
               <FormMessage />
@@ -81,9 +77,13 @@ export const CommentForm = ({ projectId }: CommentFormProps) => {
           <Button type="submit" className="w-full" disabled>
             <Spinner />
           </Button>
-        ) : (
+        ) : data?.user ? (
           <Button type="submit" className="w-full">
             Comentar
+          </Button>
+        ) : (
+          <Button disabled className="w-full">
+            Você precisa estar logado para comentar
           </Button>
         )}
       </form>

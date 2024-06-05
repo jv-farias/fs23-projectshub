@@ -172,7 +172,7 @@ export const RegisterForm = () => {
         onClick={handleLoginClick}
         className="w-full mx-auto py-6 flex gap-3 items-center"
       >
-        {loading ? (
+        {loadingGithub ? (
           <CgSpinner className="animate-spin" size={20} />
         ) : (
           <>
