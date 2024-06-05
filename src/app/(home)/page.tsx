@@ -62,7 +62,7 @@ const SideMenu = async () => {
                     Explore
                   </Button>
                 </Link>
-                <Link href={"/explore"}>
+                <Link href={"/new-project"}>
                   <Button
                     variant={"secondary"}
                     className="font-bold text-white w-full sm:w-auto sm:ml-4"
