@@ -170,7 +170,8 @@ export function MobileNav() {
             </Button>
             <Button variant="outline" className="justify-start" asChild>
               <Link
-                href="/github"
+                href={"https://www.github.com/jv-farias/fs23-projectshub"}
+                target="_blank"
                 className={cn(
                   "transition-colors hover:text-foreground/80 flex items-center",
                   pathname?.startsWith("/github")

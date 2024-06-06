@@ -50,23 +50,23 @@ const AboutPage = async () => {
           </p>
         </li>
         <li className="flex flex-wrap items-center gap-4">
-          <Link href={"https://www.github.com/jv-farias/fs23-projects-hub"}>
+          <Link href={"https://www.github.com/jv-farias/fs23-projects-hub"} target="_blank">
             <Icons.GitHub className="w-6 h-6" />
           </Link>
 
-          <Link href={"https://www.npmjs.com"}>
+          <Link href={"https://www.npmjs.com"} target="_blank">
             <Icons.Npm className="w-6 h-6" />
           </Link>
 
-          <Link href={"https://www.react.com"}>
+          <Link href={"https://www.react.com"} target="_blank">
             <Icons.React className="w-6 h-6" />
           </Link>
 
-          <Link href={"https://www.shadcn-ui.com"}>
+          <Link href={"https://www.shadcn-ui.com"} target="_blank">
             <Icons.Logo className="w-6 h-6" />
           </Link>
 
-          <Link href={"https://www.tailwindcss.com"}>
+          <Link href={"https://www.tailwindcss.com"} target="_blank">
             <Icons.Tailwind className="w-6 h-6" />
           </Link>
         </li>
