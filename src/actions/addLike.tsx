@@ -15,6 +15,17 @@ export const addLike = async (params: AddLikeParams) => {
     );
   }
 
+  const existingLike = await db.like.findFirst({
+    where: {
+      userId: params.userId,
+      projectId: params.projectId,
+    },
+  });
+
+  if (existingLike) {
+    throw new Error("Você já deu like nesse projeto!");
+  }
+
   await db.like.create({
     data: {
       user: {
@@ -23,6 +34,13 @@ export const addLike = async (params: AddLikeParams) => {
       project: {
         connect: { id: params.projectId },
       },
+    },
+  });
+
+  await db.project.update({
+    where: { id: params.projectId },
+    data: {
+      likes: { increment: 1 },
     },
   });
 

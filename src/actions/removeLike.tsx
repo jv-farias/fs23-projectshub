@@ -23,12 +23,17 @@ export const removeLike = async (params: RemoveLikeParams) => {
   });
 
   if (!likeToDelete) {
-    throw new Error("Like não encontrado."); 
+    throw new Error("Like não encontrado.");
   }
 
   await db.like.delete({
-    where: {
-      id: likeToDelete.id, 
+    where: { id: likeToDelete.id },
+  });
+
+  await db.project.update({
+    where: { id: params.projectId },
+    data: {
+      likes: { decrement: 1 },
     },
   });
 
