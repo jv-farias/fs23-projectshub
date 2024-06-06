@@ -46,3 +46,40 @@
     @apply bg-background text-foreground antialiased h-screen flex flex-col;
   }
 }
+
+.scrollbar-cards::-webkit-scrollbar {
+  height: 8px;
+}
+  
+.scrollbar-cards::-webkit-scrollbar-track {
+  background: hsl(224, 12%, 17%);
+  border-radius: 100px;
+}
+  
+.scrollbar-cards::-webkit-scrollbar-thumb {
+  background: hsl(221, 93%, 42%);
+  border-radius: 100px;
+}
+  
+.scrollbar-cards::-webkit-scrollbar-thumb:hover {
+  background: hsl(221, 100%, 46%);
+}
+
+.scrollbar-cards-home::-webkit-scrollbar {
+  height: 12px;
+}
+  
+.scrollbar-cards-home::-webkit-scrollbar-track {
+  background: hsl(224, 12%, 17%);
+  
+  border-radius: 100px;
+}
+  
+.scrollbar-cards-home::-webkit-scrollbar-thumb {
+  background: hsl(221, 93%, 42%);
+  border-radius: 100px;
+}
+  
+.scrollbar-cards-home::-webkit-scrollbar-thumb:hover {
+  background: hsl(221, 100%, 46%);
+}

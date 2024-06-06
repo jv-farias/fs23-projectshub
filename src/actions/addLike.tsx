@@ -45,4 +45,7 @@ export const addLike = async (params: AddLikeParams) => {
   });
 
   revalidatePath(`/project/${params.projectId}`);
+  revalidatePath("/");
+  revalidatePath("/explore");
+  revalidatePath("/my-projects");
 };

@@ -137,7 +137,7 @@ export const Hero = () => {
                     <div className="relative mt-5 inline-flex flex-col">
                       <Image
                         data-aos="fade-left"
-                        className="md:max-w-none mx-auto rounded"
+                        className="md:max-w-none max-md:hidden mx-auto rounded"
                         src={
                           "https://cdn.leonardo.ai/users/ef12bd53-5876-44f4-87b7-e86eee283d9c/generations/65a03da5-e1c7-4c0f-a692-00256f16df9d/Default_frontend_developer_boy_character_with_black_hair_and_f_0.jpg"
                         }
@@ -151,7 +151,7 @@ export const Hero = () => {
                     <div className="relative mt-5 inline-flex flex-col">
                       <Image
                         data-aos="fade-left"
-                        className="md:max-w-none mx-auto rounded"
+                        className="md:max-w-none max-md:hidden mx-auto rounded"
                         src={
                           "https://cdn.leonardo.ai/users/ef12bd53-5876-44f4-87b7-e86eee283d9c/generations/6574201c-9368-4d78-adbc-0988a06bb27d/Default_backend_developer_girl_character_with_yellow_hair_and_1.jpg"
                         }
@@ -165,7 +165,7 @@ export const Hero = () => {
                     <div className="relative inline-flex flex-col mt-5">
                       <Image
                         data-aos="fade-left"
-                        className="md:max-w-none mx-auto rounded"
+                        className="md:max-w-none max-md:hidden mx-auto rounded"
                         src={
                           "https://cdn.leonardo.ai/users/ef12bd53-5876-44f4-87b7-e86eee283d9c/generations/45fd5e59-5849-4abe-aa74-35e347ebaedd/Default_quality_assurance_character_robot_with_macbook_with_p_1.jpg"
                         }

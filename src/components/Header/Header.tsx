@@ -9,20 +9,23 @@ import { MainNav } from "../MainNav";
 import { MobileNav } from "../MobileNav";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "../ui/hover-card";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "../ui/hover-card";
 import { Icons } from "../Icons";
 export const Header = () => {
-
   const { data } = useSession();
   const pathname = usePathname();
-  
+
   const handleLogoutClick = () => {
     signOut();
   };
 
   return (
     <header className="sticky py-1 w-full top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 mb-4">
-      <div className="container max-w-6xl flex h-14 items-center">
+      <div className="container max-w-6xl xl:max-w-7xl mx-auto flex h-14 items-center">
         <MainNav />
         <MobileNav />
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
@@ -53,12 +56,12 @@ export const Header = () => {
                     className="max-md:hidden"
                     href={`/profile/${data.user.id}`}
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 w-full">
                       <Avatar>
                         <AvatarImage src={data.user.image ?? ""} />
                         <AvatarFallback>{data.user.name[0]}</AvatarFallback>
                       </Avatar>
-                      <span className="text-sm font-semibold">
+                      <span className="text-sm font-semibold w-full overflow-hidden whitespace-nowrap text-overflow-ellipsis">
                         {data.user.name}
                       </span>
                     </div>

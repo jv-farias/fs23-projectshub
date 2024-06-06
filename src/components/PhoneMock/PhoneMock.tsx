@@ -23,17 +23,15 @@ export const PhoneMock = () => {
   };
 
   return (
-    <>
       <Image
        data-aos="fade-left"
         src={imageMobile}
         alt="Frontend Day"
-        width={1920}
-        height={2500}
+        width={500}
+        height={500}
         onMouseMove={handleMouseMove}
         style={style}
-        className="rounded-lg max-sm:w-[80%] max-md:w-[50%] mt-12 h-[100%] object-cover"
+        className="rounded-lg max-sm:w-[70%] max-md:w-[50%] w-[350px] xl:w-[300px] mx-auto mt-12 object-cover"
       />
-    </>
   );
 };

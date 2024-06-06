@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const AboutPage = async () => {
   return (
-    <main className="container max-w-6xl px-10 max-lg:w-full  mx-auto ">
+    <main className="container max-w-6xl xl:max-w-7x px-10 max-lg:w-full  mx-auto ">
       <h1 className=" text-3xl md:text-3xl lg:text-4xl xl:text-5xl bg-clip-text font-extrabold leading-tighter tracking-tighter mb-8 text-transparent bg-gradient-to-r from-blue-500 to-teal-400 pb-2">
         Sobre o Projeto
       </h1>

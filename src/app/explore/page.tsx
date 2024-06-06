@@ -13,11 +13,11 @@ const ExplorePage = async () => {
   });
 
   return (
-    <main className="container max-w-6xl mt-4 max-lg:w-full mx-auto ">
+    <main className="container max-w-6xl xl:max-w-7xl mt-4 max-lg:w-full mx-auto ">
       <h1 className=" text-3xl md:text-3xl lg:text-4xl xl:text-5xl bg-clip-text font-extrabold leading-tighter tracking-tighter mb-10 text-transparent bg-gradient-to-r from-blue-500 to-teal-400 pb-2">
         Explore Todos os Projetos
       </h1>
-      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
+      <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-8">
         {recentProject.map((project) => {
           return (
             <ProjectCard

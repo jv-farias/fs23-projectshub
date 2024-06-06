@@ -27,18 +27,18 @@ const SideMenu = async () => {
 
   return (
     <>
-      <main className="container max-w-6xl px-10 max-lg:w-full  mx-auto ">
+      <main className="container max-w-6xl xl:max-w-7xl px-10 max-lg:w-full  mx-auto ">
         <div className="pb-12 md:pt-32 md:pb-10">
           <div className="text-center pb-12 md:pb-16">
             <h1
               data-aos="zoom-y-out"
-              className="text-6xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-tighter tracking-tighter"
+              className="text-6xl max-sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-tighter tracking-tighter"
             >
               Descubra a Criatividade e a Tecnologia da{" "}
             </h1>
             <span
               data-aos="zoom-y-out"
-              className=" text-6xl md:text-6xl lg:text-7xl xl:text-8xl bg-clip-text  font-extrabold leading-tighter tracking-tighter mb-12 text-transparent bg-gradient-to-r from-blue-500 to-teal-400"
+              className="text-6xl max-sm:text-5xl  md:text-6xl lg:text-7xl xl:text-8xl bg-clip-text  font-extrabold leading-tighter tracking-tighter mb-12 text-transparent bg-gradient-to-r from-blue-500 to-teal-400"
             >
               Turma Fullstack 23
             </span>
@@ -75,15 +75,15 @@ const SideMenu = async () => {
           </div>
         </div>
         <Hero />
-        <section className="container px-0  flex flex-col items-center max-w-screen-2xl lg:mt-32 border-y-2 border-y-secondary py-20">
+        <section className="container px-0 flex flex-col items-center max-w-screen-2xl mt-16 lg:mt-32 border-y-2 border-y-secondary py-20">
           <h3
             data-aos="zoom-y-out"
             className="z-20 text-4xl text-center md:text-5xl lg:text-6xl xl:text-7xl bg-clip-text font-extrabold leading-tighter tracking-tighter pb-10 text-transparent bg-gradient-to-r from-blue-500 to-teal-400"
           >
             Agenda FrontEnd Day
           </h3>
-          <div className="flex justify-between max-md:flex-col items-center">
-            <div className="flex flex-col  gap-4 lg:pr-24">
+          <div className="flex gap-12 justify-between max-md:flex-col items-center">
+            <div className="flex flex-col gap-4 lg:pr-24">
               <h2 className="text-2xl font-bold">Funcionalidades</h2>
               <p
                 data-aos="zoom-y-out"
@@ -115,7 +115,6 @@ const SideMenu = async () => {
                 <span className="font-semibold">{""} Matheus</span>.
               </p>
             </div>
-
             <PhoneMock />
           </div>
         </section>
@@ -125,7 +124,7 @@ const SideMenu = async () => {
           className="container px-0 flex flex-col max-w-screen-2xl mt-32"
         >
           <h3 className="font-bold mb-4">Recentes</h3>
-          <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+          <div className="flex gap-4 overflow-x-auto scrollbar-cards-home pb-6 max-md:[&::-webkit-scrollbar]:hidden">
             {recentProject.map((project) => {
               return (
                 <ProjectCard
@@ -143,7 +142,7 @@ const SideMenu = async () => {
           className="container px-0 flex flex-col max-w-screen-2xl my-10"
         >
           <h3 className="font-bold mb-4">Mais Curtidos</h3>
-          <div className="flex gap-4 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+          <div className="flex gap-4 overflow-x-auto scrollbar-cards-home pb-6 max-md:[&::-webkit-scrollbar]:hidden" >
             {moreLikedProjects.map((project) => {
               return (
                 <ProjectCard

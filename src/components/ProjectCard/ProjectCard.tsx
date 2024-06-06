@@ -46,7 +46,7 @@ export const ProjectCard = async ({
             src={project.thumbnail}
             style={{ objectFit: "cover" }}
             fill
-            className="rounded-xl min-h-[150px]"
+            className="rounded-xl min-h-[150px] hover:scale-105 transition-transform duration-300 ease-in-out"
             alt={project.name}
           />
         </div>
@@ -81,7 +81,7 @@ export const ProjectCard = async ({
         </div>
       </CardContent>
       <CardFooter className="p-0 flex flex-col gap-4">
-        <div className="w-full flex justify-start overflow-x-auto max-md:[&::-webkit-scrollbar]:hidden">
+        <div className="w-full flex justify-start overflow-x-auto pb-3 scrollbar-cards max-md:[&::-webkit-scrollbar]:hidden">
           <div className="w-full flex gap-3">
             {project.techStack.map((stack, index) => {
               return (

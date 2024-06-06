@@ -19,7 +19,7 @@ const ProjectDetailPage = async ({ params }: ProjectPageProps) => {
   });
 
   return (
-    <main className="container max-w-6xl max-md:mt-2 mt-6">
+    <main className="ccontainer max-w-6xl xl:max-w-7xl max-md:mt-2 mt-6 mx-auto">
       <div className="w-full flex justify-between max-lg:gap-8 gap-16 max-md:gap-6 max-md:grid max-md:grid-cols-1 ">
         <div className="max-md:w-full w-full overflow-hidden rounded-lg object-cover">
           <Image
