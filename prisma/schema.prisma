@@ -35,8 +35,8 @@ model Project {
   techStack   String[]
   user        User      @relation(fields: [userId], references: [id])
   userId      String
-  likes       Int       @default(0)
-  Like        Like[]
+  likes       Int       @default(0) @map("likes")
+  Likes       Like[]
   comments    Comment[]
   createdAt   DateTime  @default(now())
   editedAt    DateTime  @default(now())
@@ -53,6 +53,7 @@ model Like {
   createdAt DateTime @default(now())
   editedAt  DateTime @default(now())
 
+  @@unique([userId, projectId]) 
   @@map("likes")
 }
 
