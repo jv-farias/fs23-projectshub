@@ -70,8 +70,8 @@ export const ProjectCard = async ({
               {user.name[0]}
             </AvatarFallback>
           </Avatar>
-          <div>
-            <p className="font-semibold text-base overflow-hidden text-ellipsis text-nowrap">
+          <div className="w-full overflow-ellipsis overflow-hidden">
+            <p className="font-semibold text-base  overflow-hidden overflow-ellipsis whitespace-nowrap">
               {user.name}
             </p>
             <span className="text-sm font-semibold text-[#A1A0AE] ">
