@@ -4,6 +4,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { Button } from "@/components/ui/button";
 import { db } from "@/lib/prisma";
 import Link from "next/link";
+export const dynamic = "force-dynamic";
 
 const SideMenu = async () => {
   
