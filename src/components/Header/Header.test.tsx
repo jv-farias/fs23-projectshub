@@ -5,13 +5,14 @@ import { SessionProvider } from 'next-auth/react';
 
 
 function setup(component: JSX.Element) {
-  return render(<SessionProvider>
+  return render(<SessionProvider session={undefined}>
     {component}
   </SessionProvider>);
-
 }
+
 test('renders Header', () => {
   const { getByText } = setup(<Header />);
-  const element = getByText(/DC TEAM 23/i);
+  const element = getByText(/FS23 - PROJECTS HUB/i);
+  
   expect(element).toBeInTheDocument();
 });
