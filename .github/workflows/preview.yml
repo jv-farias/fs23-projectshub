@@ -32,15 +32,18 @@ jobs:
           node-version: 20.14.0
 
       - name: Install
+        working-directory: .
         run: npm ci
 
       - name: Lint & Test
-        run: 
+        working-directory: .
+        run: |
           npm run lint
           npm run test
       
       - name: Build
-        run: 
+        working-directory: .
+        run: |
           npx prisma generate
           npm run build
           npm run build-storybook
