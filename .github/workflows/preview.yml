@@ -1,6 +1,8 @@
-name: PR Preview
+name: Preview 
 
 on:
+  push:
+    branches: [main]
   pull_request:
     types:
       - opened
@@ -15,11 +17,7 @@ permissions:
 concurrency: ci-${{ github.ref }}
 
 jobs:
-  info:
-    uses: ./.github/workflows/call-info.yml
-
-  preview:
-    needs: info
+  check:
     runs-on: ubuntu-latest
     steps:
       # Checkout to repository
@@ -31,12 +29,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: latest
+          node-version: 20.14.0
 
-      - name: Build Next Project
-        working-directory: .
-        run: |
-          npm ci
+      - name: Install
+        run: npm ci
+
+      - name: Lint & Test
+        run: 
+          npm run lint
+          npm run test
+      
+      - name: Build
+        run: 
           npx prisma generate
           npm run build
           npm run build-storybook
