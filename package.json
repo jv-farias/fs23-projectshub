@@ -70,6 +70,7 @@
     "eslint-config-next": "14.2.3",
     "eslint-plugin-storybook": "^0.8.0",
     "jsdom": "^24.1.0",
+    "msw": "^2.3.1",
     "plop": "^4.0.1",
     "postcss": "^8",
     "prisma": "^5.14.0",
