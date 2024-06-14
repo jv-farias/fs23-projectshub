@@ -4,6 +4,7 @@
 @import "@/app/css/theme.css";
 
 @layer base {
+  .light, 
   .dark {
     --background: 225 9% 9%;
     --foreground: 210 40% 98%;
