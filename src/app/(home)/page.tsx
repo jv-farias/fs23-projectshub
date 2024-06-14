@@ -20,9 +20,12 @@ const SideMenu = async () => {
   const moreLikedProjects = await db.project.findMany({
     include: {
       user: true,
+      Likes: true,
     },
     orderBy: {
-      likes: "desc",
+      Likes: {
+        _count: "desc"
+      }
     },
   });
 
