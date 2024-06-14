@@ -5,7 +5,7 @@ import { SessionProvider } from 'next-auth/react';
 
 
 function setup(component: JSX.Element) {
-  return render(<SessionProvider session={undefined}>
+  return render(<SessionProvider>
     {component}
   </SessionProvider>);
 }
