@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "/app/css/theme.css";
+@import "@/app/css/theme.css";
 
 @layer base {
   .dark {
