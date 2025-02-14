@@ -7,7 +7,6 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 const SideMenu = async () => {
-  
   const recentProject = await db.project.findMany({
     include: {
       user: true,
@@ -24,8 +23,8 @@ const SideMenu = async () => {
     },
     orderBy: {
       Likes: {
-        _count: "desc"
-      }
+        _count: "desc",
+      },
     },
   });
 
@@ -132,6 +131,7 @@ const SideMenu = async () => {
             {recentProject.map((project) => {
               return (
                 <ProjectCard
+                  maxWidth
                   project={project}
                   user={project.user}
                   key={project.id}
@@ -146,10 +146,11 @@ const SideMenu = async () => {
           className="container px-0 flex flex-col max-w-screen-2xl my-10"
         >
           <h3 className="font-bold mb-4">Mais Curtidos</h3>
-          <div className="flex gap-4 overflow-x-auto scrollbar-cards-home pb-6 max-md:[&::-webkit-scrollbar]:hidden" >
+          <div className="flex gap-4 overflow-x-auto scrollbar-cards-home pb-6 max-md:[&::-webkit-scrollbar]:hidden">
             {moreLikedProjects.map((project) => {
               return (
                 <ProjectCard
+                  maxWidth
                   project={project}
                   user={project.user}
                   key={project.id}
