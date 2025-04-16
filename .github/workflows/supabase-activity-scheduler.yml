@@ -1,0 +1,14 @@
+name: Supabase Activity Scheduler
+
+on:
+  schedule:
+    - cron: "0 0 * * 0,3"
+  workflow_dispatch:
+
+jobs:
+  send-http-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send HTTP Request
+        run: curl https://www.fs23projectshub.com/api/etc/supabase-activity-scheduler

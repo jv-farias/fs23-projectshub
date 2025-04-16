@@ -11,6 +11,8 @@ const envSchema = z.object({
   GITHUB_SECRET: z.string(),
   UPLOADTHING_SECRET: z.string(),
   UPLOADTHING_APP_ID: z.string(),
+  SUPABASE_URL: z.string(),
+  SUPABASE_KEY: z.string(),
 });
 
 type EnvSchemaType = z.infer<typeof envSchema>;
@@ -32,6 +34,8 @@ const env = envSchema.safeParse({
   GITHUB_SECRET: process.env.GITHUB_SECRET,
   UPLOADTHING_SECRET: process.env.UPLOADTHING_SECRET,
   UPLOADTHING_APP_ID: process.env.UPLOADTHING_APP_ID,
+  SUPABASE_URL: process.env.SUPABASE_URL,
+  SUPABASE_KEY: process.env.SUPABASE_KEY,
 });
 
 if (!env.success) {
